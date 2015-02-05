@@ -1,4 +1,4 @@
-package org.github.pbetkier.spock.hk2.binders
+package com.github.pbetkier.spock.hk2.binders
 
 import groovy.transform.TypeChecked
 import org.glassfish.hk2.utilities.binding.AbstractBinder

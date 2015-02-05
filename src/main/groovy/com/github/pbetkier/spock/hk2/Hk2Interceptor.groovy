@@ -1,4 +1,4 @@
-package org.github.pbetkier.spock.hk2
+package com.github.pbetkier.spock.hk2
 
 import org.glassfish.hk2.api.ServiceLocator
 import org.glassfish.hk2.utilities.Binder

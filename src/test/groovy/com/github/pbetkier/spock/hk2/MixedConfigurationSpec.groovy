@@ -1,7 +1,7 @@
-package org.github.pbetkier.spock.hk2
+package com.github.pbetkier.spock.hk2
 
-import org.github.pbetkier.spock.hk2.binders.AnotherTestBinder
-import org.github.pbetkier.spock.hk2.binders.TestBinder
+import com.github.pbetkier.spock.hk2.binders.AnotherTestBinder
+import com.github.pbetkier.spock.hk2.binders.TestBinder
 import spock.lang.Specification
 
 import javax.inject.Inject

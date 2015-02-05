@@ -1,4 +1,4 @@
-package org.github.pbetkier.spock.hk2
+package com.github.pbetkier.spock.hk2
 
 import org.glassfish.hk2.utilities.Binder
 import org.spockframework.runtime.extension.AbstractAnnotationDrivenExtension
