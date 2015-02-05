@@ -8,14 +8,11 @@ import javax.inject.Inject
 import javax.inject.Named
 
 @UseBinders(TestBinder)
-class BasicInjectionSpec extends Specification {
+class NonTrivialInjectionsSpec extends Specification {
 
     @Shared
     @Inject
     Integer sharedInjected
-
-    @Inject
-    String injected
 
     @Inject
     @Named("firstBigDecimal")
@@ -28,11 +25,6 @@ class BasicInjectionSpec extends Specification {
     def "should inject into shared fields"() {
         expect:
         sharedInjected == 1
-    }
-
-    def "should inject into non-shared fields"() {
-        expect:
-        injected == "my value"
     }
 
     def "should inject into named fields"() {

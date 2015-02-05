@@ -7,7 +7,7 @@ import spock.lang.Specification
 import javax.inject.Inject
 
 @UseBinders(value = TestBinder, instances = { new AnotherTestBinder() })
-class MixedInjectionSpec extends Specification {
+class MixedConfigurationSpec extends Specification {
 
     @Inject
     Integer intValue

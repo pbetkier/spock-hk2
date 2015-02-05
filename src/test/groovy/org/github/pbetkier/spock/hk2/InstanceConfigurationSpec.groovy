@@ -6,7 +6,7 @@ import spock.lang.Specification
 import javax.inject.Inject
 
 @UseBinders(instances = { new AnotherTestBinder() })
-class BinderInstanceInjectionSpec extends Specification {
+class InstanceConfigurationSpec extends Specification {
 
     @Inject
     Long injected
