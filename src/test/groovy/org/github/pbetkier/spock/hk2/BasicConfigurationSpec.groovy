@@ -11,7 +11,7 @@ class BasicConfigurationSpec extends Specification {
     @Inject
     String injected
 
-    def "should inject into fields from binder class"() {
+    def "should inject into fields from binder of given class"() {
         expect:
         injected == "my value"
     }
