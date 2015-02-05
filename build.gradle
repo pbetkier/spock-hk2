@@ -3,7 +3,8 @@ apply plugin: 'maven'
 
 sourceCompatibility = 1.7
 
-group = "org.github.pbetkier"
+group = "com.github.pbetkier"
+version = "0.1.0"
 
 repositories {
     mavenCentral()
