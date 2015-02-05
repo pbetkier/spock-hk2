@@ -5,19 +5,13 @@ import org.glassfish.hk2.utilities.Binder
 import org.glassfish.hk2.utilities.ServiceLocatorUtilities
 import org.spockframework.runtime.extension.AbstractMethodInterceptor
 import org.spockframework.runtime.extension.IMethodInvocation
-import org.spockframework.runtime.model.FieldInfo
-import org.spockframework.runtime.model.SpecInfo
-
-import javax.inject.Inject
 
 class Hk2Interceptor extends AbstractMethodInterceptor {
 
     private final ServiceLocator locator
-    private final List<FieldInfo> injectedFields
 
-    Hk2Interceptor(SpecInfo spec, Set<Binder> binders) {
+    Hk2Interceptor(Set<Binder> binders) {
         this.locator = ServiceLocatorUtilities.bind("spock-hk2-spec-service-locator-${System.currentTimeMillis()}", binders.toArray() as Binder[])
-        this.injectedFields = spec.fields.findAll { it.isAnnotationPresent(Inject) }
     }
 
     @Override

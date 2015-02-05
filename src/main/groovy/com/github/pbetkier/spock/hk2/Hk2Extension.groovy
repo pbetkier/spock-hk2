@@ -24,7 +24,7 @@ class Hk2Extension extends AbstractAnnotationDrivenExtension<UseBinders> {
             return
         }
 
-        Hk2Interceptor interceptor = new Hk2Interceptor(spec, binders)
+        Hk2Interceptor interceptor = new Hk2Interceptor(binders)
         SpecInfo topSpec = spec.getTopSpec()
         topSpec.sharedInitializerMethod.addInterceptor(interceptor)
         topSpec.initializerMethod.addInterceptor(interceptor)
