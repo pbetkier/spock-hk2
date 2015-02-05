@@ -1,0 +1,20 @@
+apply plugin: 'groovy'
+apply plugin: 'maven'
+
+sourceCompatibility = 1.7
+
+group = "org.github.pbetkier"
+
+repositories {
+    mavenCentral()
+}
+
+configurations {
+    provided
+    compile.extendsFrom provided
+}
+
+dependencies {
+    provided 'org.glassfish.hk2:hk2-locator:2.3.0'
+    compile 'org.spockframework:spock-core:0.7-groovy-2.0'
+}
