@@ -10,6 +10,7 @@ plugins {
 
 apply plugin: 'groovy'
 apply plugin: 'maven'
+apply plugin: 'signing'
 
 group = "com.github.pbetkier"
 version = scmVersion.version
@@ -28,4 +29,65 @@ configurations {
 dependencies {
     provided 'org.glassfish.hk2:hk2-locator:2.3.0'
     compile 'org.spockframework:spock-core:0.7-groovy-2.0'
+}
+
+task javadocJar(type: Jar) {
+    classifier = 'javadoc'
+    from javadoc
+}
+
+task sourcesJar(type: Jar) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+artifacts {
+    archives javadocJar, sourcesJar
+}
+
+signing {
+    sign configurations.archives
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
+            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+                authentication(userName: ossrhUsername, password: ossrhPassword)
+            }
+
+            snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+                authentication(userName: ossrhUsername, password: ossrhPassword)
+            }
+
+            pom.project {
+                name 'Spock-HK2'
+                packaging 'jar'
+                description 'Spock extension which helps writing integration tests in your HK2-based application with explicit binders.'
+                url 'https://github.com/pbetkier/spock-hk2'
+
+                scm {
+                    connection 'scm:git:https://github.com/pbetkier/spock-hk2.git'
+                    developerConnection 'scm:git:https://github.com/pbetkier/spock-hk2.git'
+                    url 'https://github.com/pbetkier/spock-hk2'
+                }
+
+                licenses {
+                    license {
+                        name 'The Apache License, Version 2.0'
+                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+
+                developers {
+                    developer {
+                        id 'pbetkier'
+                        name 'Piotr Betkier'
+                    }
+                }
+            }
+        }
+    }
 }
