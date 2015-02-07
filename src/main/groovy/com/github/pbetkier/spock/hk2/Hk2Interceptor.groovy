@@ -24,6 +24,12 @@ class Hk2Interceptor extends AbstractMethodInterceptor {
         handleAnyInitializerMethodInterception(invocation)
     }
 
+    @Override
+    void interceptCleanupSpecMethod(IMethodInvocation invocation) {
+        invocation.proceed()
+        locator.shutdown()
+    }
+
     private void handleAnyInitializerMethodInterception(IMethodInvocation invocation) {
         locator.inject(invocation.target)
         invocation.proceed()
