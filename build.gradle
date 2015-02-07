@@ -45,11 +45,24 @@ artifacts {
     archives javadocJar, sourcesJar
 }
 
+ext.isRelease = scmVersion.rawVersion.position.onTag
 signing {
+    required { isRelease && gradle.taskGraph.hasTask("uploadArchives") }
     sign configurations.archives
 }
 
+ext.ossrhUsername = properties['ossrhUsername']
+ext.ossrhPassword = properties['ossrhPassword']
+
+task checkOssrhPropertiesProvided << {
+    if (ossrhUsername == null || ossrhPassword == null) {
+        throw new IllegalStateException("ERROR: you need to have ossrhUsername and ossrhPassword " +
+                "properties defined in your HOME/.gradle/gradle.properties file to upload archives")
+    }
+}
+
 uploadArchives {
+    dependsOn checkOssrhPropertiesProvided
     repositories {
         mavenDeployer {
             beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
