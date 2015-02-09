@@ -4,7 +4,13 @@ Spock extension which helps writing integration tests in your [HK2-based](https:
 
 ## Installation
 
-To be added soon...
+Add a dependency on Spock-HK2 from Maven Central, e.g. in Gradle build file:
+
+```
+testCompile 'com.github.pbetkier:spock-hk2:0.1.0'
+```
+
+Spock-HK2 expects ``org.glassfish.hk2:hk2-locator`` dependency to be present on the classpath. It is tested with HK2 version of ``2.3.0``.
 
 ## Usage
 
